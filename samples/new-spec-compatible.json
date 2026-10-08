@@ -1,0 +1,63 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Claims API",
+    "version": "1.1.0"
+  },
+  "paths": {
+    "/claims/{id}": {
+      "get": {
+        "operationId": "getClaim",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A claim",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "status",
+                    "amount"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "open",
+                        "approved",
+                        "rejected"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number"
+                    },
+                    "currency": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Claim not found"
+          }
+        }
+      }
+    }
+  }
+}
